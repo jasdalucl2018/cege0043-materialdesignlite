@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "PhoneGap Material test version dated 1 feb 2019",
+  "short_name": "PhoneGap Material test version dated 1 feb 2019",
+  "version": "fullmaterialtemplate",
+  "description": "PhoneGap App using the dashboard template for the Material Design Lite templates from here: https://getmdl.io/templates/index.html",
+  "author": "PhoneGap Team",
+  "icons": [],
+  "start_url": "index.html"
+}
