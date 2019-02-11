@@ -1,4 +1,4 @@
-// 19_2_11 9:25 adding getEarthquake function 
+// 19_2_11 9:25 adding getEarthquake function (this is a global variable fo AJAX request)
 var client;
 // and a variable that will hold the layer itself
 var earthquakelayer;
@@ -35,9 +35,36 @@ function earthquakeResponse() {
 }
 // define a global variable to hold the layer so that we can use it later on
 var earthquakelayer;
-// convert the received data - which is text - to JSON format and add it to the map
+
+// adding custom icons
+var earthquakelayer;
 function loadEarthquakelayer(earthquakedata) {
-	var earthquakejson = JSON.parse(earthquakedata);
-	earthquakelayer = L.geoJson(earthquakejson).addTo(mymap);
-	mymap.fitBounds(earthquakelayer.getBounds());
+	var earthquakejson = JSON.parse(earthquakedata );
+	earthquakelayer = L.geoJson(earthquakejson,
+{
+	pointToLayer: function (feature, latlng)
+	{
+		if (feature.properties.mag > 1.5) {
+			return L.marker(latlng, {icon:testMarkerRed}).bindPopup("<b>"+feature.properties.place+"</b>");
+			}
+else {
+	return L.marker(latlng, {icon:testMarkerPink}).bindPopup("<b>"+feature.properties.place+"</b>");;
+	}
+},
+}).addTo(mymap);
+mymap.fitBounds(earthquakelayer.getBounds());
 }
+// allows for asynchronous request
+document.addEventListener('DOMContentLoaded', function() {
+getEarthquakes();
+}, false);
+// adding custom marker
+var testMarkerRed = L.AwesomeMarkers.icon({
+icon: 'play',
+markerColor: 'red'
+});
+var testMarkerPink = L.AwesomeMarkers.icon({
+icon: 'play',
+markerColor: 'pink'
+})
+
