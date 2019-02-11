@@ -6,18 +6,23 @@ var earthquakelayer;
 function addPointLinePoly(){
 // adding code for line 
 L.marker([51.5, -0.09]).addTo(mymap):
-// add circle
-L.circle ([51.508, -0.11], 500, {
-	color: 'red'
-	fillColor: '#f03',
-	fillOpacity: 0.5
-	}).addTo(mymap).bindPopup("I am a circle.");
-	// adding polygone
-	va latlngs = [
-	[51.5, -0.09],
-	[51.51, -0.047]
-	];
-	var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
+
+// adding polygone
+
+var myPolygon = L.polygon 	([
+	[51.509., -0.08],
+	[51.503, - 0.06],
+	[51.51, - 0.047], {
+		color: 'red'
+		fillColor: '#f03',
+		fillOpacity: 0.5
+	}).addTo (mymap);
+// adding line
+var latlngs = [
+[51.0, -0.10],
+[51.2, -0.05]
+];
+var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
 }
 // // 19_2_11 9:25 adding getEarthquake function 
 function getEarthquakes() {
@@ -36,35 +41,12 @@ function earthquakeResponse() {
 // define a global variable to hold the layer so that we can use it later on
 var earthquakelayer;
 
-// adding custom icons
-var earthquakelayer;
+/// .. missing code here
+
 function loadEarthquakelayer(earthquakedata) {
-	var earthquakejson = JSON.parse(earthquakedata );
-	earthquakelayer = L.geoJson(earthquakejson,
-{
-	pointToLayer: function (feature, latlng)
-	{
-		if (feature.properties.mag > 1.5) {
-			return L.marker(latlng, {icon:testMarkerRed}).bindPopup("<b>"+feature.properties.place+"</b>");
-			}
-else {
-	return L.marker(latlng, {icon:testMarkerPink}).bindPopup("<b>"+feature.properties.place+"</b>");;
-	}
-},
-}).addTo(mymap);
-mymap.fitBounds(earthquakelayer.getBounds());
-}
-// allows for asynchronous request
-document.addEventListener('DOMContentLoaded', function() {
-getEarthquakes();
-}, false);
-// adding custom marker
-var testMarkerRed = L.AwesomeMarkers.icon({
-icon: 'play',
-markerColor: 'red'
-});
-var testMarkerPink = L.AwesomeMarkers.icon({
-icon: 'play',
-markerColor: 'pink'
-})
+	var earthquakejson = JSON.parse(earthquakedata);
+	earthquakelayer = L.geoJson(earthquakejson), addTo(mymap);
+	mymap.fitBounds(earthquakelayer.getBounds());
+
+
 
