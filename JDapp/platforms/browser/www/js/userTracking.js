@@ -1,14 +1,15 @@
 
 
+var userMarker;
 function trackLocation() {
 	if (navigator.geolocation) {
 		navigator.geolocation.watchPosition(showPosition);
-	}
-	else {
-		document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";
-	}
+@@ -8,5 +9,8 @@ function trackLocation() {
 }
 
 function showPosition(position) {
-	L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
+	if (userMarker){
+		mymap.removeLayer(userMarker);
+	}
+	userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("<b>You were here</b>");
 } 

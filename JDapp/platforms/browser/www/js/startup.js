@@ -1,5 +1,11 @@
+function startup() {
+	document.addEventListener('DOMContentLoaded',
+	function() {
+		trackAndPoly ();
+	}, false);
+}
 
-function trackAndPoly() {
+function trackAndCircle() {
 	trackLocation();
 	addPointLinePoly();
 } 

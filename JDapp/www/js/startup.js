@@ -5,7 +5,7 @@ function startup() {
 	}, false);
 }
 
-function trackAndPoly() {
+function trackAndCircle() {
 	trackLocation();
 	addPointLinePoly();
 } 
