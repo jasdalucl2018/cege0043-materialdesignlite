@@ -26,7 +26,9 @@ function getDistanceFromPoint(position) {
 	var lng = -0.13818;
 	// return the distance in kilometers
 	var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat,lng, 'K');
-	document.getElementById('showDistance').innerHTML = "Distance: " + distance;
+	// 19_2_12 17:73 remove the show distance alert )document.getElementById('showDistance').innerHTML = "Distance: " + distance;) and replace with if statement 
+	if (distance<0.1){alert("you are within 100m of your target location "); }
+
 }
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
 function calculateDistance(lat1, lon1, lat2, lon2, unit) {
