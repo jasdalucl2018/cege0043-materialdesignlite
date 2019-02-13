@@ -1,5 +1,4 @@
 
-ar userMarker;
 
 //function to track location
 function trackLocation(){
