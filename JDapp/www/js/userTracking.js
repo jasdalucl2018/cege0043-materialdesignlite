@@ -9,7 +9,8 @@ function trackLocation(){
 		document.getElementById('showLocation').innerHTML = "Geolocation is not supported by this browser.";
 	}
 }
-		
+
+var userMarker;
 //function to show position
 function showPosition(position){
 	if (userMarker){
