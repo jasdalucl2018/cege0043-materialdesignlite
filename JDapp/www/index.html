@@ -119,6 +119,16 @@ crossorigin=""></script>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
+
+          <a class="mdl-navigation__link" href=""onclick='getPort();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get Port</a>
+
+         
+
+          <a class="mdl-navigation__link" href=""onclick='callDivNodeJSChange();return false;'>,<i class="=mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Change div content</a>
+
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
+
           
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
 
@@ -129,18 +139,24 @@ crossorigin=""></script>
           <a class="mdl-navigation__link" href=""onclick='trackAndCircle();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Track and Circle</a>
 
 
+
+
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
         </nav>
+
+        <!-- the mapid div will hold the map -->
       </div>
-      <main class="mdl-layout__content mdl-color--grey-100">
-         <!-- the mapid div will hold the map -->
-    <div id="mapid" style="width: 600px; height: 400px;"></div>
-          <div class="mdl-grid demo-content">
-            <div class="demo-separator mdl-cell--1-col"></div>
-            <div id="ucllogo" name="ucllogo">div goes here</div>
+        <main class="mdl-layout__content mdl-color--grey-100">
+          <div id="mapid" style="width: 600px; height: 500px;"></div>
+          <div id="ajaxtext" style="width: 1600px; height: 20px;"></div>
+        </main>
+
+
+
+
           </div>
         
       </main>
@@ -151,7 +167,9 @@ crossorigin=""></script>
     <script src="js/leafletFunctions.js"></script>
     <script src="js/userTracking.js"></script>
     <script src="js/startup.js"></script>
-    <script>startup();</script>
+     <script>startup();</script>
+  
+
   </body>
 </html>
 
