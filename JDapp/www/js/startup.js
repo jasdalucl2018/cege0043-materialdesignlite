@@ -19,6 +19,7 @@ function startup(){
 	document.addEventListener('DOMContentLoaded',function(){
 		trackAndCircle();
 		getPort();
+		loadW3HTML
 	},false);
 }
 
