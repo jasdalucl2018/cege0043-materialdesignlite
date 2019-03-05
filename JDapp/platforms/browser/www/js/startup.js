@@ -1,27 +1,22 @@
 
-
-function trackAndCircle(){
-	trackLocation();
-	addPointLinePoly();
-	getEarthquakes();
-
+function loadW3HTML() {
+    w3.includeHTML();
 }
 
 
-//add function to process html qwhen page is loaded
-
-function loadW3HTML(){
-	w3.includeHTML();
+// functions to run as the page loaded
+function trackAndCircle() {
+    loadW3HTML()
+    getPort()
+    trackLocation()
+   
+    getFormdata()
 }
 
-// add Point/Line/Circle data and track location automatically - useful for setting up different startup functions!
-function startup(){
-	document.addEventListener('DOMContentLoaded',function(){
-		trackAndCircle();
-		getPort();
-		loadW3HTML
-	},false);
-}
 
----
+function startup() {
+    document.addEventListener('DOMContentLoaded', function () {
+        trackAndCircle();
+    }, false);
+}
 
