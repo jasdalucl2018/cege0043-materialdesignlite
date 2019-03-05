@@ -8,6 +8,12 @@ function trackAndCircle(){
 }
 
 
+
+
+
+
+
+
 //add function to process html qwhen page is loaded
 
 function loadW3HTML(){
@@ -19,9 +25,18 @@ function startup(){
 	document.addEventListener('DOMContentLoaded',function(){
 		trackAndCircle();
 		getPort();
-		loadW3HTML
+		loadW3HTML()
+
+		//19-5-4 adding track location 
+		trackLocation()
+
+
+		// 19-5-4 add to function get form data
+		getFormdata()
+
+
 	},false);
 }
 
----
+
 
