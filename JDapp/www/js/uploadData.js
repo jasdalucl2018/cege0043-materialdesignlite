@@ -55,15 +55,18 @@ function startDataUpload() {
 
 var client; 
 
-// 190-3-1 @13;04 creating function to issue AJAX request
+// 190-3-1 @13;04 creating function request to upload data.
 
 function processData(postString){
     client = new XMLHttpRequest();
-    client.open('POST','http://developer.cege.ucl.ac.uk:30296/reflectData',true);
+
+    postString = postString + "&port id=" + httpPortNumber;
+    var url = 'http://developer.cege.ucl.ac.uk:' + httpPortNumber + "/uploadData";
+    client.open('POST',ucl,true);    
     client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     client.onreadystatechange = dataUploaded;
     client.send(postString);
-p}
+}
 
 // 19-3-1 @13:04 creating code to wait for response from server and process response once it is received
 
