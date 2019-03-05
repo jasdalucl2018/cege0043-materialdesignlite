@@ -37,10 +37,35 @@ function earthquakeResponse() {
 // define a global variable to hold the layer so that we can use it later on
 var earthquakelayer;
 // convert the received data - which is text - to JSON format and add it to the map
-function loadEarthquakelayer(earthquakedata) {
+
+// correcting code sourced from https://github.com/junju-ng/cege0043-jsReference/blob/2759d76098bbb9fbc89602ee727d1d7a4f182b01/leafletFunctions.js
+// convert the received data (which is text) into JSON format and add it to the map
+
+function loadEarthquakelayer(earthquakedata){
+	// convert text to JSON
 	var earthquakejson = JSON.parse(earthquakedata);
-	earthquakes = earthquakejson
-	earthquakelayer = L.geoJson(earthquakejson).addTo(mymap);
+	earthquakes = earthquakejson;
+			
+	// load geoJSON earthquake layer using custom markers
+	earthquakelayer = L.geoJSON(earthquakejson,
+	{
+		// use point to layer to create the points
+		pointToLayer: function(feature, latlng){
+			// look at properties of GeoJSON file to see EQ magnitude and use different marker depending on magnitude
+			if (feature.properties.mag > 1.75){
+				return L.marker(latlng, {icon: testMarkerRed}).bindPopup("<b>"+
+				feature.properties.place+"</b>");
+			}
+					
+			else { 
+			return L.marker(latlng, {icon: testMarkerPink}).bindPopup("<b>"+
+				feature.properties.place+"</b>");
+			}
+		},					
+	}).addTo(mymap);
+			
+	// change the map zoom so that all the data is shown
 	mymap.fitBounds(earthquakelayer.getBounds());
 }
+
 
