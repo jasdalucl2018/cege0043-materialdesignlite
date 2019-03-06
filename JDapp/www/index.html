@@ -14,6 +14,7 @@
 -->
 <html lang="en">
   <head>
+
     <!-- the following links add the CSS and Javascript required for the Leaflet Map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
     integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
@@ -27,8 +28,7 @@
   <!-- the following links incorporate the CSS required for custom icon creation -->
   <link rel="stylesheet" href="ionicons.min.css">
   <link rel="stylesheet" href="leaflet.awesome-markers.css">
-  <script src="leaflet.awesome-markers.js"></script>
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script src="js/leaflet.awesome-markers.js"></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -92,9 +92,9 @@
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item"><a href="empty_leaflet.html">About</a></li>
-            <li class="mdl-menu__item"onclick="addUCLLogo()">Contact</li>
-            <li class="mdl-menu__item"onclick="menuClicked()">Legal information</li>
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Legal information</li>
           </ul>
         </div>
       </header>
@@ -122,16 +122,10 @@
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
-
           <a class="mdl-navigation__link" href=""onclick='getPort();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get Port</a>
-
-         <a class="mdl-navigation__link" href=""onclick='callDivNodeJSChange();return false;'>,<i class="=mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Change div content</a>
-
-
-          <a class="mdl-navigation__link" href=""onclick='getEarthquakes();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get Earthquakes</a>
-          <a class="mdl-navigation__link" href=""onclick='addPointLinePoly();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Get Vectors</a>
-          <a class="mdl-navigation__link" href=""onclick='trackLocation();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Track Location</a>
-          <a class="mdl-navigation__link" href=""onclick='trackAndCircle();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Track and Circle</a>
+          <a class="mdl-navigation__link" href=""onclick='callDivNodeJSChange();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Change Div Content</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Promos</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
           <div class="mdl-layout-spacer"></div>
@@ -139,40 +133,40 @@
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-            <div class="mdl-grid demo-content">
+        <div class="mdl-grid demo-content">
             <div class="demo-separator mdl-cell--1-col"></div>
-
-            <div id="mapid" style="width: 600px; height: 500px;"></div>
-            <div id="ajaxtext" style="width: 1600px; height: 20px;"></div>
-         
+            <div id="ucllogo" name="ucllogo">div goes here </div>
+          </div>
+        </div>
       </main>
 
-         <!-- the mapid div will hold the map -->
+      <!-- DIV to hold the map -->
        <main class="mdl-layout__content mdl-color--grey-100">
-    <div id="mapid" style="width: 600px; height: 400px;"></div>
+    <div id="mapid" style="width: 600px; height: 500px;">
+    </div>
     </main>
 
-
-    <!-- below is the DIV for server testing -->
-
+    <!-- DIV for AJAX test using server -->
     <main class="mdl-layout__content mdl-color--grey-100">
-      <h8>Change DIV content using AJAX</h8>
-      <div id="ajaxtext" style="width: 1600px; height: 20px;">
-        <div w3-include-html="createForm.html"></div>
-      </div>
-    </main>
+      <h8>Change DIV content using AJAX
+      </h8>
+    <div id="ajaxtext" style="width: 1600px; height: 20px;">
+    </div>
+  </main>
 
-  <!-- below is the DIV for server testing (source Sam Colchester github)-->
-
+    <!-- DIV for AJAX test using local files -->
     <main class="mdl-layout__content mdl-color--grey-100">
-      <p>Type the html file name here - note you need to include .html</p>
+      <p>Type the html file name here - note you need to include .html
+      </p>
       <input type="text" name="filename" id="filename" size=50>
-      <div id="div1">This is the unchanged div content</div>
-      <button id="button1" onclick="callDivChange()">Click me to change the DIV content</button>
+      <div id="div1">This is the unchanged div content
+      </div>
+      <button id="button1" onclick="callDivChange()">Click me to change the DIV content
+      </button>
     </main>
-  
 
     </div>
+
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="js/rhMenu.js"></script>
     <script src="js/leaflet.js"></script>
@@ -180,12 +174,15 @@
     <script src="js/userTracking.js"></script>
     <script src="js/startup.js"></script>
     <script src="js/utilities.js"></script>
-    <script src="js/AJAX.js"></script>
-    <script src="testAJAX.js"></script>
+    
+      <!-- tempt removing ajax <script src="js/AJAX.js"></script>  -->
 
-  <!-- activaste startup script-->
+    
+    <script src="js/testAJAX.js"></script>
 
-  <script>startup()</script>>
+<!-- Activates startup script -->
+
+    <script>startup();</script>
 
   </body>
 </html>
