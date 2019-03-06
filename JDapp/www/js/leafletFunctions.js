@@ -35,12 +35,11 @@ function earthquakeResponse() {
 	}
 }
 // define a global variable to hold the layer so that we can use it later on
+
+// define a global variable to hold the layer so we can use it later on
 var earthquakelayer;
-// convert the received data - which is text - to JSON format and add it to the map
-
-// correcting code sourced from https://github.com/junju-ng/cege0043-jsReference/blob/2759d76098bbb9fbc89602ee727d1d7a4f182b01/leafletFunctions.js
+		
 // convert the received data (which is text) into JSON format and add it to the map
-
 function loadEarthquakelayer(earthquakedata){
 	// convert text to JSON
 	var earthquakejson = JSON.parse(earthquakedata);
@@ -68,52 +67,39 @@ function loadEarthquakelayer(earthquakedata){
 	mymap.fitBounds(earthquakelayer.getBounds());
 }
 
-var formClient; // define global variable to process AJAX request to get formdata
-var allForms;
-var formDataLayer; // global variable to hold form data for later use
+// create red test marker
+var testMarkerRed = L.AwesomeMarkers.icon({
+	icon: 'play',
+	markerColor: 'red'
+});
 
-// AJAX request function to load formdata
-function callFormData(){
-	alert(httpPortNumber);
-	alert("This will get all the form data.");
-	formClient = new XMLHttpRequest();
-	var url = "http://developer.cege.ucl.ac.uk:" + httpPortNumber + "/getFormData/" + httpPortNumber; //get url with non-hardcoded port number
-	formClient.open("GET", url, true); // send to server
-	formClient.onreadystatechange = processFormData;
-	try {
-		formClient.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	}
-	catch (e) {
-		// this only works in internet explorer
-	}
-	formClient.send();
+
+// adding code for proximity alert
+
+function closestFormPoint() {
+    var minDistance = 100000000000;
+    var closestFormPoint = 0;
+    // for this example, use the latitude/longitude of warren street
+    // in your assignment replace this with the user's location
+    var userlat = 51.524048;
+    var userlng = -0.139924;
+    formLayer.eachLayer(function (layer) {
+        var distance = calculateDistance(userlat,
+            userlng, layer.getLatLng().lat, layer.getLatLng().lng, 'K');
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestFormPoint = layer.feature.properties.id;
+        }
+    });
+    // for this to be a proximity alert, the minDistance must be
+    // closer than a given distance - you can check that here
+    // using an if statement
+    // show the popup for the closest point
+    formLayer.eachLayer(function (layer) {
+        if (layer.feature.properties.id == closestFormPoint) {
+            layer.openPopup();
+        }
+    });
 }
 
-// AJAX response function
-function processFormData(){
-	if (formClient.readyState === 4) { // 4 = response from server completely loaded
-		if (formClient.status > 199 && formClient.status < 300) 
-			var formData = formClient.responseText;
-	}
-}
-
-// convert the received data (which is text) into JSON format and add it to the map
-function loadFormDataLayer(formData){
-	// convert text to JSON
-	var formdatajson = JSON.parse(formData);
-	allForms = formdatajson;
-
-	// load geoJSON earthquake layer using custom markers
-	formDataLayer = L.geoJSON(formdatajson,
-	{
-		// use point to layer to create the red points
-		pointToLayer: function(feature, latlng){
-			return L.marker(latlng, {icon: testMarkerRed}).bindPopup("<b>"+
-			feature.properties.place+"</b>");
-			}					
-	}).addTo(mymap);
-
-	// change the map zoom so that all the data is shown
-	mymap.fitBounds(formDataLayer.getBounds());
-}
 
