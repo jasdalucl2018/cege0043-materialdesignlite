@@ -1,80 +1,66 @@
 function startDataUpload() {
-    alert ("start data upload")
-    
-    // 19-3-1 @12;31 amending function to get values from form and post mit to server
-
+    // now get the form values
     var name = document.getElementById("name").value;
     var surname = document.getElementById("surname").value;
     var module = document.getElementById("module").value;
     var postString = "name=" + name + "&surname=" + surname + "&module=" + module;
 
-
-    // 19-3-1 adding get the checkbox values - separate them with a | so that they can be
+    // now get the checkbox values -
+    // separate them with a | so that they can be
     // split later on if necessary
     var checkString = "";
-    for (var i = 1;i< 5;i++){
-        if (document.getElementById("check"+i).checked === true) {
-            checkString = checkString +
-            document.getElementById("check"+i).value + "||"
+    for (var i = 1; i < 5; i++) {
+        if (document.getElementById("check" + i).checked === true) {
+            checkString = checkString + document.getElementById("check" + i).value + "||"
         }
     }
-    postString = postString + "&modulelist="+checkString;
+    postString = postString + "&modulelist=" + checkString;
 
-    // get the radio button values
+
+    // now get the radio button values
     if (document.getElementById("morning").checked) {
-        postString=postString+"&lecturetime=morning";
+        postString = postString + "&lecturetime=morning";
     }
     if (document.getElementById("afternoon").checked) {
-        postString=postString+"&lecturetime=afternoon";
+        postString = postString + "&lecturetime=afternoon";
     }
 
-    // get the select box values
+    // now get the select box values
     var language = document.getElementById("languageselectbox").value;
-    postString = postString + "&language="+language;
+    postString = postString + "&language=" + language;
 
-
-    // include Lat & Long values
-
+    // now get the geometry values
     var latitude = document.getElementById("latitude").value;
     var longitude = document.getElementById("longitude").value;
     postString = postString + "&latitude=" + latitude + "&longitude=" + longitude;
 
+    // pop an alert for display
+    alert(postString);
 
-    // 19-3-3 @12:37 adding code for pop up alert
-
-    alert (postString);
-
-    // 19-3-1 @ 13;17 confirm that function actually runs
-
-
+    // call the processData() which tell the server what type of data we are uploading
     processData(postString);
-
 }
 
-// 19-3-1 @13;03 adding global variable to hold Ajax request
 
-var client; 
-
-// 190-3-1 @13;04 creating function request to upload data.
-
-function processData(postString){
+//  tell the server what type of data we are uploading
+var client;  // the global variable that holds the request
+function processData(postString) {
     client = new XMLHttpRequest();
-
-    postString = postString + "&port id=" + httpPortNumber;
-    var url = 'http://developer.cege.ucl.ac.uk:' + httpPortNumber + "/uploadData";
-    client.open('POST',ucl,true);    
+    client.open('POST', 'http://developer.cege.ucl.ac.uk:30313/reflectData', true);
     client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     client.onreadystatechange = dataUploaded;
     client.send(postString);
 }
 
-// 19-3-1 @13:04 creating code to wait for response from server and process response once it is received
-
-function dataUploaded(){
-    // function listens for server to say data is readyState
-    if (client.readyState === 4){
-        // change data upload result DIV to show response
+// create the code to wait for the response from the data server,
+// and process the response once it is received
+function dataUploaded() {
+    // this function listens out for the server to say that
+    // the data is ready - i.e. has state 4
+    if (client.readyState == 4) {
+        // change the DIV to show the response
         document.getElementById("dataUploadResult").innerHTML = client.responseText;
     }
 }
+
 
