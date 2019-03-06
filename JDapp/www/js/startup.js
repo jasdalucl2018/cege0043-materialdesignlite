@@ -9,9 +9,8 @@ function loadW3HTML() {
 
 // functions to run as the page loaded
 function 
-// temporary removing // trackAndCircle() //
- {loadW3HTML()
-    getPort()
+// temporary removing // trackAndCircle() + loadW3HTML()//
+ {getPort()
     trackLocation()
    
     getFormdata()
