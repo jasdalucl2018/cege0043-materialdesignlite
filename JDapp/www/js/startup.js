@@ -1,11 +1,16 @@
 
+/*
+// temporarly removing function to correct error 
+
 function loadW3HTML() {
     w3.includeHTML();
 }
-
+*/
 
 // functions to run as the page loaded
-function trackAndCircle() {
+function 
+// temporary removing // trackAndCircle() //
+ {
     loadW3HTML()
     getPort()
     trackLocation()
