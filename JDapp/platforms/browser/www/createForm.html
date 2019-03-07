@@ -1,35 +1,6 @@
 <!doctype html>
-<!--
-  Material Design Lite
-  Copyright 2015 Google Inc. All rights reserved.
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      https://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
 <html lang="en">
   <head>
-    <!-- the following links add the CSS and Javascript required for the Leaflet Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
-    integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
-    integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
-    crossorigin=""></script>
-    <!-- the following CSS is used to set the size of the Map -->
-    <style type="text/css">#mapid { height: 500px; }
-  </style>
-  <!-- the following links incorporate the CSS required for custom icon creation -->
-  <link rel="stylesheet" href="ionicons.min.css">
-  <link rel="stylesheet" href="leaflet.awesome-markers.css">
-  <script src="leaflet.awesome-markers.js"></script>
-  <script src="https://www.w3schools.com/lib/w3.js"></script>js
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
@@ -60,7 +31,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
     #view-source {
       position: fixed;
@@ -71,8 +42,28 @@
       margin-bottom: 40px;
       z-index: 900;
     }
-    </style>
+</style>
+  <!-- the following links add the CSS and Javascript required for the Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"\
+  integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
+  crossorigin=""/>
+
+  <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+  integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
+  crossorigin=""></script>
+
+  <!--the following CSS is used to set the size of the Map-->
+  <style type="text/css">
+      #mapid{height: 500px;}
+  </style>
+    
+  <!--the following links incorporate the CSS required for custom icon creation -->
+  <link rel="stylesheet" href="./css/ionicons.min.css">
+  <link rel="stylesheet" href="./css/leaflet.awesome-markers.css">
+  <script src="./js/leaflet.awesome-markers.js"></script>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
+  <script src="js/startup.js"></script>
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
       <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
@@ -92,9 +83,9 @@
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item"><a href="empty_leaflet.html">About</a></li>
-            <li class="mdl-menu__item"onclick="addUCLLogo()">Contact</li>
-            <li class="mdl-menu__item"onclick="menuClicked()">Legal information</li>
+            <li class="mdl-menu__item"><a href="leafetGeoJSON2.html">About</a></li>
+            <li class="mdl-menu__item"onclick=" addUCLLogo ()">Contact</li>
+            <li class="mdl-menu__item"onclick="menuClicked()">Div Change</li>
           </ul>
         </div>
       </header>
@@ -122,55 +113,104 @@
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Inbox</a>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Trash</a>
-
-          <a class="mdl-navigation__link" href=""onclick='getPort();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get Port</a>
-
-         <a class="mdl-navigation__link" href=""onclick='callDivNodeJSChange();return false;'>,<i class="=mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Change div content</a>
-
-
           <a class="mdl-navigation__link" href=""onclick='getEarthquakes();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Get Earthquakes</a>
-          <a class="mdl-navigation__link" href=""onclick='addPointLinePoly();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Get Vectors</a>
-          <a class="mdl-navigation__link" href=""onclick='trackLocation();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Track Location</a>
-          <a class="mdl-navigation__link" href=""onclick='trackAndCircle();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Track and Circle</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+          <a class="mdl-navigation__link" href=""onclick='addPointLinePoly();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Points/Lines/Circle</a>
+          <a class="mdl-navigation__link" href=""onclick='trackLocation();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>userTracking</a>
+          <a class="mdl-navigation__link" href=""onclick='getPort();return false;'><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>getPort</a>
+          <a class="mdl-navigation__link" href=""onclick='callDivNodeJSChange();return false;'><i class="mdl-color-text--blue-grey-400 material-icons"role="presentation">forum</i>Change Div Content</a>
           <div class="mdl-layout-spacer"></div>
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-                <div class="mdl-grid demo-content">
+        <div class="mdl-grid demo-content">
             <div class="demo-separator mdl-cell--1-col"></div>
-
-            <div id="mapid" style="width: 600px; height: 500px;"></div>
-            <div id="ajaxtext" style="width: 1600px; height: 20px;"></div>
-            <div w3-include-html="createForm.html"></div>
-          </div>
-         
+            <div id="ucllogo" name="ucllogo">div goes here </div>
+        </div>
       </main>
+        <main class="mdl-layout__content mdl-color--grey-100">
+              <div id="mapid" style="width: 600px; height: 400px;">
+              </div>
+              <div id="ajaxtext" style="width: 1600px; height: 20px;">
+                <!-- Load form -->
+                <div <!doctype html>
+<head>
+  <title>Simple Form creation Example</title>
+</head>
+<body>
+  <h1> This is a simple form</h1>
+  <div>
+    <!-- Add text box for name !-->
+    <label for="name">Name</label>
+    <input type="text" size="25" id="name"/><br/>
 
-         <!-- the mapid div will hold the map -->
-       <main class="mdl-layout__content mdl-color--grey-100">
-    <div id="mapid" style="width: 600px; height: 400px;"></div>
-    </main>
+    <!-- Add text box for surname !-->
+    <label for="surname">Surname</label>
+    <input type="text" size="25" id="surname"/><br/>
 
+    <!-- Add text box for typing  title !-->
+    <label for="module">Module</label>
+    <input type="text" size="25" id="module"/><br/>
+
+
+    <!-- Add text box for typing  latitude and longitude !-->
+    <p>What are your coordinates?</p>
+    <!-- latitude -->
+    <label for="latitude">Latitude</label>
+    <input type="text" size="25" id="latitude"/><br/>
+    <!-- longitude -->
+    <label for="longitude">Longitude</label>
+    <input type="text" size="25" id="longitude"/><br/>
+
+
+    <!-- Add  buttons for morning/afternoon lectures !-->
+  <p>Would you like lectures in the morning or afternoon?</p>
+    Morning: <input type="radio" name="amorpm" id="morning" /><br/>
+    Afternoon: <input type="radio" name="amorpm" id ="afternoon"/><br/>
+
+    <!-- Add checkboxes for modules taken !-->
+  <p>Which modules are you taking?</p>
+    CEGEG077: <input type="checkbox" name="modules" id = check1 value="CEGEG077"
+    checked="yes" /><br />
+    CEGEG129: <input type="checkbox" name="modules" id = check2 value="CEGEG129"
+    /><br />
+    CEGEG082: <input type="checkbox" name="modules" id = check3 value="CEGEG082"
+    /><br />
+    CEGEG034: <input type="checkbox" name="modules" id = check4 value="CEGEG034"
+    /><br />
+
+    <!-- Add select boxes for first language !--> 
+    <p>What is your first language?</p>
+    <select name="languageselectbox" id="languageselectbox">
+    <option >English </option>
+    <option>Mandarin</option>
+    <option>Greek</option>
+    <option>Italian</option>
+    <option>Spanish</option>
+
+  </select>
+  <br />
+
+  </div>
+
+  <!-- Button to call method startDataUpload() !-->
+  <button id="startUpload" onclick="startDataUpload()">Start Data Upload</button>
+  <!-- A DIV that shows that the button works -->
+  <div id="dataUploadResult">The result of the upload goes here</div>
+  <script src="uploadData.js"></script>
+
+</body>></div>
+              </div>
+        </main>
     </div>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="js/rhMenu.js"></script>
-    <script src="js/leaflet.js"></script>
-    <script src="js/leafletFunctions.js"></script>
-    <script src="js/userTracking.js"></script>
-    <script src="js/startup.js"></script>
-
-     <script src="js/getEarthquakes.js"></script>
-
-    <script src="js/uploadData.js"></script>
-    <script src="js/ajax.js"></script>
-
-
-    <script src="js/utilities.js"></script>
-
-    <script>startup(); </script>
-
+      <script src="js/rhMenu.js"></script>
+      <script src="js/leaflet.js"></script>
+      <script src="js/leafletFunctions.js"></script>
+      <script src="js/userTracking.js"></script>
+      <script src="js/utilities.js"></script>
+      <script src="js/ajax.js"></script>
+      <script src="js/uploadData.js"></script>
+      <script>startup(); </script>
   </body>
 </html>
