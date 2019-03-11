@@ -46,7 +46,7 @@ function startDataUpload() {
 var client;  // the global variable that holds the request
 function processData(postString) {
     client = new XMLHttpRequest();
-    client.open('POST', 'http://developer.cege.ucl.ac.uk:30313/reflectData', true);
+    client.open('POST', 'http://developer.cege.ucl.ac.uk:30271/reflectData', true);
     client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     client.onreadystatechange = dataUploaded;
     client.send(postString);
