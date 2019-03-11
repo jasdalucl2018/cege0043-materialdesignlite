@@ -1,4 +1,8 @@
 function startDataUpload() {
+
+    alert ("start data upload"):
+
+    
     // now get the form values
     var name = document.getElementById("name").value;
     var surname = document.getElementById("surname").value;
