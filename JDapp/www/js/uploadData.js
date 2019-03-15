@@ -1,6 +1,6 @@
 function startDataUpload() {
 
-    alert ("start data upload"):
+    alert ("start data upload";
 
     
     // now get the form values
@@ -9,67 +9,64 @@ function startDataUpload() {
     var module = document.getElementById("module").value;
     var postString = "name=" + name + "&surname=" + surname + "&module=" + module;
 
-    // now get the checkbox values -
-    // separate them with a | so that they can be
-    // split later on if necessary
-    var checkString = "";
-    for (var i = 1; i < 5; i++) {
-        if (document.getElementById("check" + i).checked === true) {
-            checkString = checkString + document.getElementById("check" + i).value + "||"
-        }
-    }
-    postString = postString + "&modulelist=" + checkString;
+	// now get the geometry values (coordinates)
+	var latitude = document.getElementById("latitude").value;
+	var longitude = document.getElementById("longitude").value;
+	postString = postString + "&latitude=" + latitude + "&longitude=" +
+	longitude;
 
+		// now get the radio button values
+	if (document.getElementById("morning").checked) {
+		postString=postString+"&lecturetime=morning";
 
-    // now get the radio button values
-    if (document.getElementById("morning").checked) {
-        postString = postString + "&lecturetime=morning";
-    }
-    if (document.getElementById("afternoon").checked) {
-        postString = postString + "&lecturetime=afternoon";
-    }
+	}
+	if (document.getElementById("afternoon").checked) {
+		postString=postString+"&lecturetime=afternoon";
+	}
 
-    // now get the select box values
-    var language = document.getElementById("languageselectbox").value;
-    postString = postString + "&language=" + language;
+		// now get the checkbox values - separate them with a | so that they can be
+	// split later on if necessary
+	var checkString = "";
+	for (var i = 1;i< 5;i++){
+	if (document.getElementById("check"+i).checked === true) {
+		checkString = checkString +
+		document.getElementById("check"+i).value + "||"
+	}
+	}
+	postString = postString + "&modulelist="+checkString;
 
-    // now get the geometry values
-    var latitude = document.getElementById("latitude").value;
-    var longitude = document.getElementById("longitude").value;
-    postString = postString + "&latitude=" + latitude + "&longitude=" + longitude;
+	// now get the select box values
+	var language = document.getElementById("languageselectbox").value;
+	postString = postString + "&language="+language;
 
-    // pop an alert for display
-    alert(postString);
-
-    // call the processData() which tell the server what type of data we are uploading
-    processData(postString);
+	processData(postString); //call processData to run. Always last
 }
 
+	var client; // the global variable that holds the request
 
-//  tell the server what type of data we are uploading
-var client;  // the global variable that holds the request
-function processData(postString) {
-    client = new XMLHttpRequest();
-    
-    
-    // temporary suspending this line of code client.open('POST', 'http://developer.cege.ucl.ac.uk:30271/reflectData', true);
-    
-    client.open('POST', 'http://developer.cege.ucl.ac.uk:/30271/uploadData', true);
-    
-    client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    client.onreadystatechange = dataUploaded;
-    client.send(postString);
-}
+	// create AJAX request
 
-// create the code to wait for the response from the data server,
-// and process the response once it is received
-function dataUploaded() {
-    // this function listens out for the server to say that
-    // the data is ready - i.e. has state 4
-    if (client.readyState == 4) {
-        // change the DIV to show the response
-        document.getElementById("dataUploadResult").innerHTML = client.responseText;
-    }
-}
+	function processData(postString) {
+
+		client = new XMLHttpRequest();
+		postString = postString + "&port_id=" + httpPortNumber;
+		var url = 'http://developer.cege.ucl.ac.uk:'+ httpPortNumber + "/uploadData";
+		client.open('POST',url,true);
+		client.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		client.onreadystatechange = dataUploaded;
+		client.send(postString);
+	}
+
+	// create the code to wait for the response from the data server, and process the response once it is received
+
+	function dataUploaded() {
+	
+	// this function listens out for the server to say that the data is ready - i.e. has state 4
+
+		if (client.readyState == 4) {
+		// change the DIV to show the response
+		document.getElementById("dataUploadResult").innerHTML = client.responseText;
+		}
+	}
 
 
